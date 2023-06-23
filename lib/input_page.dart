@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'icon_content.dart';
+import 'reusable_card.dart';
+
+const activeCardColour = Color(0xFF1D1E33);
+const bottomContainerColour = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,39 +23,33 @@ class _InputPageState extends State<InputPage> {
             Expanded(
                 child: Row(
               children: <Widget>[
-                Expanded(child: ReusableCard(Color(0xFF1D1E33))),
-                Expanded(child: ReusableCard(Color(0xFF1D1E33))),
+                Expanded(
+                    child: ReusableCard(
+                        activeCardColour,
+                    IconContent(FontAwesomeIcons.mars,'MALE'))),
+             Expanded(child: ReusableCard(activeCardColour,
+                 IconContent(FontAwesomeIcons.venus,'FEMALE'))),
               ],
             )),
-            Expanded(child: ReusableCard(Color(0xFF1D1E33))),
+         /*   Expanded(child: ReusableCard(activeCardColour)),*/
             Expanded(
                 child: Row(
               children: <Widget>[
-                Expanded(child: ReusableCard(Color(0xFF1D1E33))),
-                Expanded(child: ReusableCard(Color(0xFF1D1E33))),
+               /* Expanded(child: ReusableCard(activeCardColour)),
+                Expanded(child: ReusableCard(activeCardColour)),*/
               ],
             )),
+            Container(
+              color: bottomContainerColour,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: 80.0,
+            )
           ],
         ));
   }
 }
 
-class ReusableCard extends StatelessWidget {
-
-  ReusableCard(@required this.colour);
-  Color colour;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color:colour,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-    );
-  }
-}
 
 /*
 class _InputPageState extends State<InputPage> {

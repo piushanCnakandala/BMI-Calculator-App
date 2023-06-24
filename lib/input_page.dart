@@ -5,6 +5,13 @@ import 'reusable_card.dart';
 
 const activeCardColour = Color(0xFF1D1E33);
 const bottomContainerColour = Color(0xFFEB1555);
+const inActiveCardColour = Color(0xFF111328);
+
+enum Gender {
+  male,
+  female,
+  other
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -12,6 +19,9 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+     Gender selectedGender = Gender.other;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +35,20 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                     child: ReusableCard(
-                        activeCardColour,
-                    IconContent(FontAwesomeIcons.mars,'MALE'))),
-             Expanded(child: ReusableCard(activeCardColour,
+                        (){
+                          setState(() {
+                            selectedGender =Gender.male;
+                          });
+                        },
+                        selectedGender ==Gender.male ? activeCardColour : inActiveCardColour,
+                    IconContent(FontAwesomeIcons.mars,'MALE')),),
+             Expanded(child: ReusableCard(
+                 (){
+                   setState(() {
+                     selectedGender =Gender.female;
+                   });
+                 },
+                 selectedGender ==Gender.female ? activeCardColour : inActiveCardColour,
                  IconContent(FontAwesomeIcons.venus,'FEMALE'))),
               ],
             )),

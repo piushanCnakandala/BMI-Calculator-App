@@ -6,6 +6,7 @@ import '../components/reusable_card.dart';
 import '../constants.dart';
 import '../components/bottom_button.dart';
 import '../components/round_icon_button.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 
 enum Gender { male, female, other }
@@ -59,7 +60,7 @@ class _InputPageState extends State<InputPage> {
             Expanded(
                 child: ReusableCard(() {
             },
-                    kInActiveCardColour,
+                    kActiveCardColour,
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -109,7 +110,7 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(() {
                     },
-                        kInActiveCardColour,
+                        kActiveCardColour,
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -145,7 +146,7 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(() {
                     },
-                        kInActiveCardColour,
+                        kActiveCardColour,
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -184,7 +185,12 @@ class _InputPageState extends State<InputPage> {
             ),
             BottomButton(
                 (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>ResultsPage()));
+                  CalculatorBrain calc =CalculatorBrain(height, weight);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>ResultsPage(
+                    calc.calculatrBMI(),
+                    calc.getResult(),
+                    calc.getInterpretation(),
+                  )));
                 },
                'CALCULATE'
             ),

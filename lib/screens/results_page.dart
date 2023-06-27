@@ -7,7 +7,16 @@ enum Gender { male, female, other }
 
 class ResultsPage extends StatelessWidget {
 
-  Gender selectedGender = Gender.other;
+  ResultsPage(
+    @required this.bmResult,
+    @required this.resultText,
+    @required this.interpretation,);
+
+  final String bmResult;
+  final String resultText;
+  final String interpretation;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,46 +25,55 @@ class ResultsPage extends StatelessWidget {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
-         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Expanded(
-              child: Container(
-                child: Center(
-                  child: Text(
-                    'Your Result',
-                    style: kTitleTextStyle,
-                  ),
+            child: Container(
+              child: Center(
+                child: Text(
+                  'Your Result',
+                  style: kTitleTextStyle,
                 ),
-              ),),
+              ),
+            ),
+          ),
           Expanded(
             flex: 5,
-              child: ReusableCard(() {
+            child: ReusableCard(
+                  () {
+                // Function body placeholder, you can add your logic here.
+                print('ReusableCard tapped');
               },
-                kActiveCardColour,
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[Text(
-                    'Normal',
+              kActiveCardColour,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    resultText.toUpperCase(),
                     style: kResultTextStyle,
                   ),
-                    Text(
-                        '18.3',
-                      style:kBMIIextStyle ,
-                    ),
-                    Text(
-                      'Your BMI result is quite lox,you should eat more',
-                      textAlign: TextAlign.center,
-                      style: kBodyTextStyle,
-                    ),
-                  ],
-                ),
-              ),),
-          BottomButton(() {
-            Navigator.pop(context);
-          }, 'RE-CALCULATE')
+                  Text(
+                    bmResult,
+                    style: kBMIIextStyle,
+                  ),
+                  Text(
+                    interpretation,
+                    textAlign: TextAlign.center,
+                    style: kBodyTextStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          BottomButton(
+                () {
+              Navigator.pop(context);
+            },
+            'RE-CALCULATE',
+          ),
         ],
-      )
+      ),
     );
   }
 }

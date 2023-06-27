@@ -1,8 +1,12 @@
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_content.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
+import '../components/icon_content.dart';
+import '../components/reusable_card.dart';
+import '../constants.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
+
 
 enum Gender { male, female, other }
 
@@ -54,9 +58,6 @@ class _InputPageState extends State<InputPage> {
             )),
             Expanded(
                 child: ReusableCard(() {
-              setState(() {
-                selectedGender = Gender.male;
-              });
             },
                     kInActiveCardColour,
                     Column(
@@ -107,9 +108,6 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                     child: ReusableCard(() {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
                     },
                         kInActiveCardColour,
                         Column(
@@ -146,9 +144,6 @@ class _InputPageState extends State<InputPage> {
                   ),
                   Expanded(
                     child: ReusableCard(() {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
                     },
                         kInActiveCardColour,
                         Column(
@@ -187,36 +182,14 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              color: kBottomContainerColour,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: 80.0,
-            )
+            BottomButton(
+                (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>ResultsPage()));
+                },
+               'CALCULATE'
+            ),
           ],
         ));
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton(this.icon, this.onPress);
-
-  final IconData icon;
-  final void Function() onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPress,
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-    );
   }
 }
 
